@@ -2,8 +2,10 @@ cmake_minimum_required(VERSION 3.14)
 include(FetchContent)
 FetchContent_Declare(
   kinova_binary_api
-  URL https://artifactory.kinovaapps.com:443/artifactory/generic-public/kortex/API/2.5.0/linux_x86-64_x86_gcc.zip
-  URL_HASH MD5=64bd86e7ab8bda90ef1fc7d6a356e080
+  URL https://artifactory.kinovaapps.com/artifactory/generic-public/kortex/API/2.5.0/linux_armv7_jetson_gcc.zip
+  URL_HASH MD5=a6c96adc053d7b2095676f009fde1a44
+  # URL https://artifactory.kinovaapps.com:443/artifactory/generic-public/kortex/API/2.5.0/linux_x86-64_x86_gcc.zip
+  # URL_HASH MD5=64bd86e7ab8bda90ef1fc7d6a356e080
 )
 FetchContent_MakeAvailable(kinova_binary_api)
 
@@ -31,6 +33,8 @@ find_package(kortex_api REQUIRED)
 #Current: only support Linux x86_64
 if(CMAKE_SYSTEM_NAME STREQUAL "Linux" AND CMAKE_SYSTEM_PROCESSOR STREQUAL "x86_64")
   set(API_URL https://artifactory.kinovaapps.com:443/artifactory/generic-public/kortex/API/2.5.0/linux_x86-64_x86_gcc.zip)
+elseif(CMAKE_SYSTEM_NAME STREQUAL "Linux" AND (CMAKE_SYSTEM_PROCESSOR STREQUAL "aarch64" OR CMAKE_SYSTEM_PROCESSOR STREQUAL "arm64"))
+  set(API_URL https://artifactory.kinovaapps.com:443/artifactory/generic-public/kortex/API/2.5.0/linux_armv7_jetson_gcc.zip)
 else()
   # TODO(future) to support ARM or other builds logic could go here to fetch the precompiled libKortexApiCpp.a
   # see notes in kortex_api CMakeList.txt
