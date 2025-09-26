@@ -14,6 +14,7 @@ Visualization Manager:
       Name: Grid
       Value: true
     - Class: moveit_rviz_plugin/MotionPlanning
+      MoveIt_Use_Constraint_Aware_IK: true
       Name: MotionPlanning
       Planned Path:
         Loop Animation: true
@@ -25,6 +26,8 @@ Visualization Manager:
         Scene Alpha: 1
       Scene Robot:
         Robot Alpha: 0.5
+      Planning Request:
+        Use Collision-Aware IK: true
       Value: true
   Global Options:
     Fixed Frame: world
