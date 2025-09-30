@@ -34,6 +34,8 @@
 
   <!-- import main macro -->
   <xacro:include filename="$(find kortex_description)/robots/kortex_robot.xacro" />
+  <!-- ADD: include our collision macro -->
+  <xacro:include filename="$(find kortex_description)/robots/cobot_collision.xacro" />
 
   <!-- initial position for simulations (Mock Hardware, Gazebo) -->
   <xacro:arg name="initial_positions_file" default="$(find kortex_description)/config/initial_positions.yaml"/>
@@ -70,6 +72,8 @@
     moveit_active="$(arg moveit_active)">
     <origin xyz="0 0 0" rpy="0 0 0" />  <!-- position robot in the world -->
   </xacro:load_robot>
+
+  <xacro:cobot_collision/>
 
   <xacro:if value="$(arg sim_gazebo)">
     <!-- Gazebo plugins -->
