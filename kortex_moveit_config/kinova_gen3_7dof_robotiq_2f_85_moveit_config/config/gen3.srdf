@@ -163,4 +163,34 @@
     <disable_collisions link1="robotiq_85_right_knuckle_link" link2="spherical_wrist_2_link" reason="Never"/>
     <disable_collisions link1="shoulder_link" link2="spherical_wrist_1_link" reason="Never"/>
     <disable_collisions link1="spherical_wrist_1_link" link2="spherical_wrist_2_link" reason="Adjacent"/>
+
+    <!-- Fixtures colliding with each other: ignore self-collisions between them -->
+    <disable_collisions link1="cobot_base" link2="cobot_tower" reason="Fixed"/>
+    <disable_collisions link1="cobot_tower" link2="supporter_460" reason="Fixed"/>
+    <disable_collisions link1="cobot_tower" link2="supporter_580" reason="Fixed"/>
+    <disable_collisions link1="supporter_460" link2="supporter_580" reason="Fixed"/>
+
+    <disable_collisions link1="camera_bracket" link2="kinect" reason="Fixed"/>
+    <disable_collisions link1="camera_bracket" link2="kinect_ablated" reason="Fixed"/>
+    <disable_collisions link1="kinect" link2="kinect_ablated" reason="Fixed"/>
+    <disable_collisions link1="kinect" link2="supporter_580" reason="Fixed"/>
+    <disable_collisions link1="kinect_ablated" link2="supporter_580" reason="Fixed"/>
+
+    <!-- Camera stack that’s rigidly connected -->
+    <disable_collisions link1="camera_base"  link2="camera_body" reason="Fixed"/>
+    <disable_collisions link1="camera_base"  link2="camera_visor" reason="Fixed"/>
+    <disable_collisions link1="camera_body"  link2="camera_visor" reason="Fixed"/>
+    <disable_collisions link1="camera_base"  link2="depth_camera_link" reason="Fixed"/>
+    <disable_collisions link1="depth_camera_link" link2="rgb_camera_link" reason="Fixed"/>
+    <disable_collisions link1="depth_camera_link" link2="imu_link" reason="Fixed"/>
+    <disable_collisions link1="rgb_camera_link" link2="imu_link" reason="Fixed"/>
+
+    <!-- Other rigid pairs you showed -->
+    <disable_collisions link1="touchscreen_mount" link2="touchscreen" reason="Fixed"/>
+
+    <!-- Optional: if these fixtures are modeled as children of base_link,
+         also ignore base_link vs. fixture self-collisions -->
+    <disable_collisions link1="base_link" link2="cobot_base" reason="Fixed"/>
+    <disable_collisions link1="base_link" link2="cobot_tower" reason="Fixed"/>
+    <disable_collisions link1="base_link" link2="camera_bracket" reason="Fixed"/>
 </robot>

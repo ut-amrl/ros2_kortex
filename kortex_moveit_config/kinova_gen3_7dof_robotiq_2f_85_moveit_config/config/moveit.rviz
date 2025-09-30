@@ -26,6 +26,7 @@ Visualization Manager:
         Scene Alpha: 1
       Scene Robot:
         Robot Alpha: 0.5
+        Show Robot Collision: true
       Planning Request:
         Use Collision-Aware IK: true
       Value: true

@@ -16,8 +16,8 @@ joint_limits:
     max_acceleration: 8.6
   joint_2:
     has_position_limits: true
-    min_position: -2.4                 # taken from kortex_description URDF # 2.41
-    max_position:  2.4
+    min_position: -2.41                 # taken from kortex_description URDF # 2.41
+    max_position:  2.41
     has_velocity_limits: true
     max_velocity: 1.3963000000000001
     has_acceleration_limits: true
@@ -30,8 +30,8 @@ joint_limits:
     max_acceleration: 8.6
   joint_4:
     has_position_limits: true
-    min_position: -2.65                 # taken from kortex_description URDF # 2.66
-    max_position:  2.65
+    min_position: -2.66                 # taken from kortex_description URDF # 2.66
+    max_position:  2.66
     has_velocity_limits: true
     max_velocity: 1.3963000000000001
     has_acceleration_limits: true
@@ -44,8 +44,8 @@ joint_limits:
     max_acceleration: 8.6
   joint_6:
     has_position_limits: true
-    min_position: -2.22                 # taken from kortex_description URDF # 2.23
-    max_position:  2.22
+    min_position: -2.23                 # taken from kortex_description URDF # 2.23
+    max_position:  2.23
     has_velocity_limits: true
     max_velocity: 1.2218
     has_acceleration_limits: true

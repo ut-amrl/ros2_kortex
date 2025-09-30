@@ -9,7 +9,13 @@ response_adapters:
   - default_planning_response_adapters/AddTimeOptimalParameterization
   - default_planning_response_adapters/ValidateSolution
   - default_planning_response_adapters/DisplayMotionPath
-start_state_max_bounds_error: 0.1
+start_state_max_bounds_error: 0.15
+
+ompl:
+  simplify_solutions: true
+  optimization_objective: PathLength
+  enforce_joint_model_state_space: true
+
 planner_configs:
   SBLkConfigDefault:
     type: geometric::SBL
@@ -137,30 +143,30 @@ planner_configs:
 
 manipulator:
   planner_configs:
-    - SBLkConfigDefault
-    - ESTkConfigDefault
-    - LBKPIECEkConfigDefault
-    - BKPIECEkConfigDefault
-    - KPIECEkConfigDefault
-    - RRTkConfigDefault
+    # - SBLkConfigDefault
+    # - ESTkConfigDefault
+    # - LBKPIECEkConfigDefault
+    # - BKPIECEkConfigDefault
+    # - KPIECEkConfigDefault
+    # - RRTkConfigDefault
     - RRTConnectkConfigDefault
-    - RRTstarkConfigDefault
-    - TRRTkConfigDefault
-    - PRMkConfigDefault
+    # - RRTstarkConfigDefault
+    # - TRRTkConfigDefault
+    # - PRMkConfigDefault
     - PRMstarkConfigDefault
-    - FMTkConfigDefault
-    - BFMTkConfigDefault
-    - PDSTkConfigDefault
-    - STRIDEkConfigDefault
-    - BiTRRTkConfigDefault
-    - LBTRRTkConfigDefault
-    - BiESTkConfigDefault
-    - ProjESTkConfigDefault
-    - LazyPRMkConfigDefault
-    - LazyPRMstarkConfigDefault
-    - SPARSkConfigDefault
-    - SPARStwokConfigDefault
-    - TrajOptDefault
+    # - FMTkConfigDefault
+    # - BFMTkConfigDefault
+    # - PDSTkConfigDefault
+    # - STRIDEkConfigDefault
+    # - BiTRRTkConfigDefault
+    # - LBTRRTkConfigDefault
+    # - BiESTkConfigDefault
+    # - ProjESTkConfigDefault
+    # - LazyPRMkConfigDefault
+    # - LazyPRMstarkConfigDefault
+    # - SPARSkConfigDefault
+    # - SPARStwokConfigDefault
+    # - TrajOptDefault
 gripper:
   planner_configs:
     - SBLkConfigDefault

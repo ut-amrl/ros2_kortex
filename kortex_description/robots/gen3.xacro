@@ -26,11 +26,20 @@
     <xacro:arg name="use_external_cable" default="false" />
 
     <xacro:include filename="$(find kortex_description)/robots/kortex_robot.xacro" />
-    <!-- initial position for simulations (Mock Hardware, Gazebo) -->
+    <xacro:include filename="$(find kortex_description)/robots/cobot_collision.xacro"/>
+    <!-- initial position for simulations (Mock Hardware, Gazebo, Ignition) -->
     <xacro:arg name="initial_positions_file" default="$(find kortex_description)/config/initial_positions.yaml"/>
     <!-- convert to property to use substitution in function -->
     <xacro:property name="initial_positions_file" default="$(arg initial_positions_file)"/>
     <link name="world" />
+
+    <!-- <link name="cobot_base_link"/>
+    <joint name="world_to_cobot_base" type="fixed">
+        <parent link="world"/>
+        <child  link="cobot_base_link"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+    </joint> -->
+
     <xacro:load_robot
         parent="world"
         arm="$(arg arm)"
@@ -55,7 +64,8 @@
         sim_isaac="$(arg sim_isaac)"
         use_external_cable="$(arg use_external_cable)"
         initial_positions="${xacro.load_yaml(initial_positions_file)}" >
-        <origin xyz="0 0 0" rpy="0 0 0" />  <!-- position robot in the world -->
+        <origin xyz="0 0 0.468" rpy="0 0 0" />  <!-- position robot in the world -->
     </xacro:load_robot>
+    <xacro:cobot_collision/>
 
 </robot>
