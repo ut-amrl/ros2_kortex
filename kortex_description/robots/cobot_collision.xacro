@@ -8,7 +8,7 @@
       base_radius:=0.3
       base_height:=0.162
       tower_size:='0.125 0.125 0.306'
-      tower_xyz:='0 0 -0.306'">
+      tower_xyz:='0 0 -0.154'">
 
     <!-- BOX: chassis shell (collision only) -->
     <link name="cobot_base">
@@ -23,12 +23,11 @@
     <joint name="cobot_base_fixed" type="fixed">
       <parent link="${mount_link}"/>
       <child  link="cobot_base"/>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
     </joint>
 
     <link name="cobot_tower">
       <collision>
-        <origin xyz="0 0 ${base_height}" rpy="0 0 0"/>
+        <origin xyz="${tower_xyz}" rpy="0 0 0"/>
         <geometry>
           <box size="${tower_size}"/>
         </geometry>
@@ -37,7 +36,6 @@
     <joint name="cobot_tower_fixed" type="fixed">
       <parent link="cobot_base"/>
       <child  link="cobot_tower"/>
-      <origin xyz="${tower_xyz}" rpy="0 0 0"/>
     </joint>
 
   </xacro:macro>

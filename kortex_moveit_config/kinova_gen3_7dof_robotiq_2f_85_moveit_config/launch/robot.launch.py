@@ -48,9 +48,18 @@ def launch_setup(context, *args, **kwargs):
         "gripper_max_force": gripper_max_force,
         "use_internal_bus_gripper_comm": use_internal_bus_gripper_comm,
     }
+    
+    from ament_index_python.packages import get_package_share_directory
+    import os
+    urdf_xacro_path = os.path.join(
+        get_package_share_directory("kortex_description"),
+        "robots",
+        "kinova.urdf.xacro",
+    )
 
     moveit_config = (
         MoveItConfigsBuilder("gen3", package_name="kinova_gen3_7dof_robotiq_2f_85_moveit_config")
+        # .robot_description(file_path=urdf_xacro_path, mappings=launch_arguments)
         .robot_description(mappings=launch_arguments)
         .trajectory_execution(file_path="config/moveit_controllers.yaml")
         .planning_scene_monitor(
