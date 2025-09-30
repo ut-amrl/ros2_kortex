@@ -8,6 +8,9 @@
   <!-- Parameters you can tweak at instantiation -->
   <xacro:macro name="cobot_collision" params="
       mount_link:=base_link
+      sensor_link:=depth_camera_link
+      sensor_xyz:='0 0 0'
+      sensor_rpy:='0 0 0'
       base_xyz:='0 0 -0.387'
       base_radius:=0.3
       base_height:=0.162
@@ -142,6 +145,13 @@
     <joint name="kinect_ablated_fixed" type="fixed">
       <parent link="camera_bracket"/>
       <child  link="kinect_ablated"/>
+    </joint>
+
+    <link name="${sensor_link}"/>
+    <joint name="$sensor_mount" type="fixed">
+      <parent link="${mount_link}"/>                <!-- or whatever you mount to -->
+      <child  link="${sensor_link}"/>
+      <origin xyz="${sensor_xyz}" rpy="${sensor_rpy}"/>
     </joint>
 
   </xacro:macro>

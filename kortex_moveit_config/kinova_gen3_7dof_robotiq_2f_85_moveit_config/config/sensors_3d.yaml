@@ -1,0 +1,16 @@
+sensors:
+  - depth_camera
+
+depth_camera:
+  sensor_plugin: occupancy_map_monitor/DepthImageOctomapUpdater # name of the plugin that we are using : [PointCloudOctomapUpdater or DepthImageOctomapUpdater]
+  image_topic: /depth/image_raw # topic to listen on for a depth image
+  camera_info_topic: /depth/camera_info
+  depth_image_transport: raw                # or compressedDepth if you publish that
+  queue_size: 5                             # number of images to queue up
+  near_clipping_plane_distance: 0.1         # minimum distance before lack of visibility
+  far_clipping_plane_distance: 5.0          # maximum distance before lack of visibility
+  shadow_threshold: 0.2                     # minimum brightness of the shadow map below an entity for its dynamic shadow to be visible
+  padding_offset: 0.03                      # size of the padding (in cm).
+  padding_scale: 4.0                        # scale of the padding
+  max_update_rate: 1.0                      # octomap representation will be updated at rate less than or equal to this value
+  filtered_cloud_topic: /moveit/filtered_cloud      # topic on which the filtered cloud will be published (mainly for debugging)

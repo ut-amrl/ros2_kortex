@@ -66,6 +66,7 @@ def launch_setup(context, *args, **kwargs):
             publish_robot_description=True, publish_robot_description_semantic=True
         )
         .planning_pipelines(pipelines=["ompl", "pilz_industrial_motion_planner"])
+        .sensors_3d(os.path.join(get_package_share_directory("kinova_gen3_7dof_robotiq_2f_85_moveit_config"), "config", "sensors_3d.yaml"))
         .to_moveit_configs()
     )
 
