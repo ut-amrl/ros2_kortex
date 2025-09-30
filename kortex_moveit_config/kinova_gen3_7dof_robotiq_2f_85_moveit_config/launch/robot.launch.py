@@ -110,7 +110,7 @@ def launch_setup(context, *args, **kwargs):
         package="controller_manager",
         executable="ros2_control_node",
         parameters=[
-        moveit_config.robot_description,   # <-- add this line
+        moveit_config.robot_description,
         ros2_controllers_path,
             {"update_rate": 1000},
         ],

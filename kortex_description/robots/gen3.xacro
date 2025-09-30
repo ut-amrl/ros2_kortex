@@ -33,8 +33,16 @@
     <!-- convert to property to use substitution in function -->
     <xacro:property name="initial_positions_file" default="$(arg initial_positions_file)"/>
     <link name="world" />
+
+    <link name="/cobot/base_link"/>
+    <joint name="world_to_cobot_base" type="fixed">
+        <parent link="world"/>
+        <child  link="/cobot/base_link"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+    </joint>
+
     <xacro:load_robot
-        parent="world"
+        parent="/cobot/base_link"
         arm="$(arg arm)"
         gripper="$(arg gripper)"
         gripper_joint_name="$(arg gripper_joint_name)"
@@ -58,7 +66,7 @@
         sim_isaac="$(arg sim_isaac)"
         use_external_cable="$(arg use_external_cable)"
         initial_positions="${xacro.load_yaml(initial_positions_file)}" >
-        <origin xyz="0 0 0" rpy="0 0 0" />  <!-- position robot in the world -->
+        <origin xyz="0 0 0.468" rpy="0 0 0" />  <!-- position robot in the world -->
     </xacro:load_robot>
     <xacro:cobot_collision/>
 
