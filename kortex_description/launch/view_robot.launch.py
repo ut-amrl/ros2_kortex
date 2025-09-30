@@ -78,7 +78,11 @@ def generate_launch_description():
             " ",
         ]
     )
-    robot_description = {"robot_description": robot_description_content}
+    # robot_description = {"robot_description": robot_description_content}
+    from launch_ros.parameter_descriptions import ParameterValue
+    robot_description = {
+        "robot_description": ParameterValue(robot_description_content, value_type=str)
+    }
 
     rviz_config_file = PathJoinSubstitution(
         [FindPackageShare("kortex_description"), "rviz", "view_robot.rviz"]
