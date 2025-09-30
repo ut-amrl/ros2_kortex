@@ -129,5 +129,20 @@
       <child  link="kinect"/>
     </joint>
 
+    <link name="kinect_ablated">
+      <collision>
+        <origin xyz="${kinect_xyz}" rpy="${kinect_rpy}"/>
+        <geometry>
+          <!-- <box size="0.11 0.05 0.2"/> -->
+          <!-- alate 4cm -->
+          <box size="0.15 0.09 0.24"/>
+        </geometry>
+      </collision>
+    </link>
+    <joint name="kinect_ablated_fixed" type="fixed">
+      <parent link="camera_bracket"/>
+      <child  link="kinect_ablated"/>
+    </joint>
+
   </xacro:macro>
 </robot>
