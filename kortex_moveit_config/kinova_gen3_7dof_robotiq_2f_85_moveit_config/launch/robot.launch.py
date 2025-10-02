@@ -54,7 +54,7 @@ def launch_setup(context, *args, **kwargs):
         .robot_description(mappings=launch_arguments)
         .trajectory_execution(file_path="config/moveit_controllers.yaml")
         .planning_scene_monitor(
-            publish_robot_description=True, publish_robot_description_semantic=True
+            publish_robot_description=False, publish_robot_description_semantic=True
         )
         .planning_pipelines(pipelines=["ompl", "pilz_industrial_motion_planner"])
         .to_moveit_configs()
@@ -80,12 +80,12 @@ def launch_setup(context, *args, **kwargs):
         arguments=["--frame-id", "world", "--child-frame-id", "base_link"],
     )
     extrinsics_strs = {
-        "x": "0.02",
-        "y": "-0.32",
+        "x": "0.01",
+        "y": "-0.27",
         "z": "0.53",
         "roll": "0.15",
-        "pitch": "0.26",
-        "yaw": "0.6",
+        "pitch": "0.3",
+        "yaw": "0.4",
     }
     depth_camera_static_tf = Node(
         package="tf2_ros",
@@ -122,14 +122,32 @@ def launch_setup(context, *args, **kwargs):
         "config",
         "ros2_controllers.yaml",
     )
+    # ros2_control_node = Node(
+    #     package="controller_manager",
+    #     executable="ros2_control_node",
+    #     parameters=[ros2_controllers_path],
+    #     remappings=[
+    #         ("/controller_manager/robot_description", "/robot_description"),
+    #     ],
+    #     output="both",
+    # )
+    robot_description_param = moveit_config.robot_description["robot_description"]
+
     ros2_control_node = Node(
         package="controller_manager",
         executable="ros2_control_node",
-        parameters=[ros2_controllers_path],
-        remappings=[
-            ("/controller_manager/robot_description", "/robot_description"),
+        parameters=[
+            {"robot_description": robot_description_param},   # <<< IMPORTANT
+            ros2_controllers_path,
+            {"use_sim_time": use_sim_time},
         ],
+        # No remapping needed when you pass the param directly
         output="both",
+        arguments=[
+            "--ros-args",
+            "--log-level", "KortexMultiInterfaceHardware:=warn",
+            "--log-level", "controller_manager:=info",   # optional: keep CM at info
+        ],
     )
 
     robot_traj_controller_spawner = Node(
@@ -197,17 +215,29 @@ def launch_setup(context, *args, **kwargs):
         condition=IfCondition(launch_rviz),
     )
 
+    # nodes_to_start = [
+    #     ros2_control_node,
+    #     robot_state_publisher,
+    #     joint_state_broadcaster_spawner,
+    #     delay_rviz_after_joint_state_broadcaster_spawner,
+    #     robot_traj_controller_spawner,
+    #     robot_pos_controller_spawner,
+    #     robot_hand_controller_spawner,
+    #     fault_controller_spawner,
+    #     move_group_node,
+    #     # static_tf,
+    #     depth_camera_static_tf,
+    # ]
     nodes_to_start = [
         ros2_control_node,
         robot_state_publisher,
         joint_state_broadcaster_spawner,
-        delay_rviz_after_joint_state_broadcaster_spawner,
         robot_traj_controller_spawner,
         robot_pos_controller_spawner,
         robot_hand_controller_spawner,
         fault_controller_spawner,
         move_group_node,
-        # static_tf,
+        delay_rviz_after_joint_state_broadcaster_spawner,
         depth_camera_static_tf,
     ]
 
