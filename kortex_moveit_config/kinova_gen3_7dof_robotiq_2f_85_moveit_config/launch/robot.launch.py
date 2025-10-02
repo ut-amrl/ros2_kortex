@@ -48,25 +48,15 @@ def launch_setup(context, *args, **kwargs):
         "gripper_max_force": gripper_max_force,
         "use_internal_bus_gripper_comm": use_internal_bus_gripper_comm,
     }
-    
-    from ament_index_python.packages import get_package_share_directory
-    import os
-    urdf_xacro_path = os.path.join(
-        get_package_share_directory("kortex_description"),
-        "robots",
-        "kinova.urdf.xacro",
-    )
 
     moveit_config = (
         MoveItConfigsBuilder("gen3", package_name="kinova_gen3_7dof_robotiq_2f_85_moveit_config")
-        # .robot_description(file_path=urdf_xacro_path, mappings=launch_arguments)
         .robot_description(mappings=launch_arguments)
         .trajectory_execution(file_path="config/moveit_controllers.yaml")
         .planning_scene_monitor(
             publish_robot_description=True, publish_robot_description_semantic=True
         )
         .planning_pipelines(pipelines=["ompl", "pilz_industrial_motion_planner"])
-        .sensors_3d(os.path.join(get_package_share_directory("kinova_gen3_7dof_robotiq_2f_85_moveit_config"), "config", "sensors_3d.yaml"))
         .to_moveit_configs()
     )
 
@@ -89,6 +79,31 @@ def launch_setup(context, *args, **kwargs):
         output="log",
         arguments=["--frame-id", "world", "--child-frame-id", "base_link"],
     )
+    extrinsics_strs = {
+        "x": "0.02",
+        "y": "-0.32",
+        "z": "0.53",
+        "roll": "0.15",
+        "pitch": "0.26",
+        "yaw": "0.6",
+    }
+    depth_camera_static_tf = Node(
+        package="tf2_ros",
+        executable="static_transform_publisher",
+        name="base_to_depth_static_tf",
+        respawn=True,
+        output="log",
+        arguments=[
+            "--x", extrinsics_strs["x"],
+            "--y", extrinsics_strs["y"],
+            "--z", extrinsics_strs["z"],
+            "--roll", extrinsics_strs["roll"],
+            "--pitch", extrinsics_strs["pitch"],
+            "--yaw", extrinsics_strs["yaw"],
+            "--frame-id", "base_link",
+            "--child-frame-id", "camera_base",
+        ],
+    )
 
     # Publish TF
     robot_state_publisher = Node(
@@ -110,13 +125,9 @@ def launch_setup(context, *args, **kwargs):
     ros2_control_node = Node(
         package="controller_manager",
         executable="ros2_control_node",
-        parameters=[
-        moveit_config.robot_description,
-        ros2_controllers_path,
-            {"update_rate": 1000},
-        ],
+        parameters=[ros2_controllers_path],
         remappings=[
-            ("/controller_manager/robot_description", "/robot_description"),  # you can keep this
+            ("/controller_manager/robot_description", "/robot_description"),
         ],
         output="both",
     )
@@ -196,7 +207,8 @@ def launch_setup(context, *args, **kwargs):
         robot_hand_controller_spawner,
         fault_controller_spawner,
         move_group_node,
-        static_tf,
+        # static_tf,
+        depth_camera_static_tf,
     ]
 
     return nodes_to_start

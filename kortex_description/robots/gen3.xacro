@@ -34,15 +34,15 @@
     <xacro:property name="initial_positions_file" default="$(arg initial_positions_file)"/>
     <link name="world" />
 
-    <link name="/cobot/base_link"/>
+    <!-- <link name="cobot_base_link"/>
     <joint name="world_to_cobot_base" type="fixed">
         <parent link="world"/>
-        <child  link="/cobot/base_link"/>
+        <child  link="cobot_base_link"/>
         <origin xyz="0 0 0" rpy="0 0 0"/>
-    </joint>
+    </joint> -->
 
     <xacro:load_robot
-        parent="/cobot/base_link"
+        parent="world"
         arm="$(arg arm)"
         gripper="$(arg gripper)"
         gripper_joint_name="$(arg gripper_joint_name)"
