@@ -90,12 +90,12 @@ def launch_setup(context, *args, **kwargs):
     extrinsics_strs = {
         "x": "0.01",
         "y": "-0.2",
-        "z": "0.625",
+        "z": "0.57",
         "roll": "0.15",
         "pitch": "0.3",
-        # "yaw": "0.35",
+        "yaw": "0.35",
         # "yaw": "0.38",
-        "yaw": "0.305",
+        # "yaw": "0.305",
     }
     depth_camera_static_tf = Node(
         package="tf2_ros",
