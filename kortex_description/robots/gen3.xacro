@@ -27,22 +27,27 @@
     <xacro:arg name="use_external_cable" default="false" />
 
     <xacro:include filename="$(find kortex_description)/robots/kortex_robot.xacro" />
-    <xacro:include filename="$(find kortex_description)/robots/cobot_collision.xacro"/>
+    <xacro:include filename="$(find cobot_description)/urdf/cobot_macro.urdf.xacro" />
     <!-- initial position for simulations (Mock Hardware, Gazebo, Ignition) -->
     <xacro:arg name="initial_positions_file" default="$(find kortex_description)/config/initial_positions.yaml"/>
     <!-- convert to property to use substitution in function -->
     <xacro:property name="initial_positions_file" default="$(arg initial_positions_file)"/>
     <link name="world" />
 
-    <!-- <link name="cobot_base_link"/>
-    <joint name="world_to_cobot_base" type="fixed">
+    <!-- Instantiate real cobot with prefix -->
+    <xacro:cobot prefix="cobot_"/>
+    
+    <!-- Connect cobot base to world -->
+    <joint name="world_to_cobot" type="fixed">
         <parent link="world"/>
-        <child  link="cobot_base_link"/>
+        <child link="cobot_base_link"/>
         <origin xyz="0 0 0" rpy="0 0 0"/>
-    </joint> -->
+    </joint>
 
+    <!-- Mount Kinova arm to cobot tower_link -->
+    <!-- Original mocked arm mount (Rigid 4): xyz="0.064742 -0.009761 -0.165019" rpy="1.570796 -1.570796 0.0" -->
     <xacro:load_robot
-        parent="world"
+        parent="cobot_tower_link"
         arm="$(arg arm)"
         gripper="$(arg gripper)"
         gripper_joint_name="$(arg gripper_joint_name)"
@@ -66,8 +71,9 @@
         sim_isaac="$(arg sim_isaac)"
         use_external_cable="$(arg use_external_cable)"
         initial_positions="${xacro.load_yaml(initial_positions_file)}" >
-        <origin xyz="0 0 0.468" rpy="0 0 0" />  <!-- position robot in the world -->
+        <!-- Origin: Kinova base_link mount position relative to cobot_tower_link -->
+        <!-- Adjusting Z to account for different base_link origin in real Kinova vs mocked arm -->
+        <origin xyz="-0.005362 -0.083288 0.32" rpy="0 0 0" />
     </xacro:load_robot>
-    <xacro:cobot_collision/>
 
 </robot>
