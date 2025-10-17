@@ -7,7 +7,7 @@ from launch_ros.descriptions import ParameterValue
 
 def generate_launch_description():
     pkg_share = launch_ros.substitutions.FindPackageShare(package='cobot_description').find('cobot_description')
-    default_model_path = os.path.join(pkg_share, 'urdf/cobot.xacro')
+    default_model_path = os.path.join(pkg_share, 'urdf/cobot.urdf.xacro')
     default_rviz_config_path = os.path.join(pkg_share, 'config/display.rviz')
     world_path = os.path.join(pkg_share, 'worlds/room.sdf')
     # sdf_path = os.path.join(pkg_share, 'models/urdf/cobot/model.sdf')

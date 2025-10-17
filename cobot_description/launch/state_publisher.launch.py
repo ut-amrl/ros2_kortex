@@ -7,7 +7,7 @@ from launch_ros.descriptions import ParameterValue
 def generate_launch_description():
     pkg_share = launch_ros.substitutions.FindPackageShare(package='cobot_description').find('cobot_description')
     use_sim_time = LaunchConfiguration('use_sim_time')
-    default_model_path = os.path.join(pkg_share, 'urdf/cobot.xacro')
+    default_model_path = os.path.join(pkg_share, 'urdf/cobot.urdf.xacro')
     robot_state_publisher_node = launch_ros.actions.Node(
         package='robot_state_publisher',
         executable='robot_state_publisher',
