@@ -72,8 +72,8 @@
         use_external_cable="$(arg use_external_cable)"
         initial_positions="${xacro.load_yaml(initial_positions_file)}" >
         <!-- Origin: Kinova base_link mount position relative to cobot_tower_link -->
-        <!-- Adjusting Z to account for different base_link origin in real Kinova vs mocked arm -->
-        <origin xyz="-0.005362 -0.083288 0.32" rpy="0 0 0" />
+        <!-- Final measured values: 331mm above tower, rotated -90° (yaw) -->
+        <origin xyz="0 0 0.331" rpy="0 0 -1.571" />
     </xacro:load_robot>
 
 </robot>

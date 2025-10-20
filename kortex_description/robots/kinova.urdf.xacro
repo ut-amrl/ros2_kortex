@@ -86,8 +86,8 @@
     initial_positions="${xacro.load_yaml(initial_positions_file)}"
     moveit_active="$(arg moveit_active)">
     <!-- Origin: Kinova base_link mount position relative to cobot_tower_link -->
-    <!-- Starting point uses old mocked arm position - measure actual mount in Fusion -->
-    <origin xyz="0.064742 -0.009761 -0.165019" rpy="1.570796 -1.570796 0.0" />
+    <!-- Final measured values: 331mm above tower, rotated -90° (yaw) -->
+    <origin xyz="0 0 0.331" rpy="0 0 -1.571" />
   </xacro:load_robot>
 
   <xacro:if value="$(arg sim_gazebo)">
