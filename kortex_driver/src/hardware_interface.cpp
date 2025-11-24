@@ -94,7 +94,8 @@ CallbackReturn KortexMultiInterfaceHardware::on_init(const hardware_interface::H
 
   info_ = info;
   // The robot's IP address.
-  std::string robot_ip = info_.hardware_parameters["robot_ip"];
+  // std::string robot_ip = info_.hardware_parameters["robot_ip"];
+  std::string robot_ip = "192.168.1.10";
   if (robot_ip.empty())
   {
     RCLCPP_ERROR(LOGGER, "Robot ip is empty!");
@@ -230,7 +231,7 @@ CallbackReturn KortexMultiInterfaceHardware::on_init(const hardware_interface::H
     // command.set_duration = execute time (milliseconds) according to the api ->
     // (not implemented yet)
     // see: https://github.com/Kinovarobotics/kortex/blob/master/api_cpp/doc/markdown/messages/Base/TwistCommand.md
-    k_api_twist_command_.set_duration(0);
+    // k_api_twist_command_.set_duration(0);
     k_api_twist_ = k_api_twist_command_.mutable_twist();
   }
 
