@@ -79,24 +79,22 @@ def launch_setup(context, *args, **kwargs):
         output="log",
         arguments=["--frame-id", "world", "--child-frame-id", "base_link"],
     )
-    # extrinsics_strs = {
-    #     "x": "0.01",
-    #     "y": "-0.2",
-    #     "z": "0.53",
-    #     "roll": "0.15",
-    #     "pitch": "0.3",
-    #     "yaw": "0.35",
-    # }
     extrinsics_strs = {
         "x": "0.01",
-        "y": "-0.2",
+        "y": "-0.25",
         "z": "0.57",
         "roll": "0.15",
         "pitch": "0.3",
         "yaw": "0.35",
-        # "yaw": "0.38",
-        # "yaw": "0.305",
     }
+    # extrinsics_strs = {
+    #     "x": "0.01",
+    #     "y": "-0.2",
+    #     "z": "0.57",
+    #     "roll": "0.15",
+    #     "pitch": "0.3",
+    #     "yaw": "0.35",
+    # }
     depth_camera_static_tf = Node(
         package="tf2_ros",
         executable="static_transform_publisher",
