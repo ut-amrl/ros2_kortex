@@ -144,5 +144,31 @@
       <child  link="kinect_ablated"/>
     </joint>
 
+    <link name="dummy_left_guard">
+      <collision>
+        <origin xyz="0.001 0.8 0.497" rpy="0 0 1.5708"/>
+        <geometry>
+          <box size="0.4 0.4 0.80"/>
+        </geometry>
+      </collision>
+    </link>
+    <joint name="dummy_left_guard_fixed" type="fixed">
+      <parent link="cobot_tower"/>
+      <child  link="dummy_left_guard"/>
+    </joint>
+
+    <!-- <link name="dummy_front_guard">
+      <collision>
+        <origin xyz="0.8 0.0 -0.4" rpy="0 0 0"/>
+        <geometry>
+          <box size="0.4 0.4 0.1"/>
+        </geometry>
+      </collision>
+    </link>
+    <joint name="dummy_front_guard_fixed" type="fixed">
+      <parent link="cobot_tower"/>
+      <child  link="dummy_front_guard"/>
+    </joint> -->
+
   </xacro:macro>
 </robot>
