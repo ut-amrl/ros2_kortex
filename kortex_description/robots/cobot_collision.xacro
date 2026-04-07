@@ -26,6 +26,13 @@
       ">
 
     <link name="cobot_base">
+      <visual>
+        <origin xyz="${base_xyz}" rpy="0 0 0"/>
+        <geometry>
+            <cylinder radius="${base_radius}" length="${base_height}"/>
+        </geometry>
+        <material name="cobot_silver"/>
+      </visual>
       <collision>
         <origin xyz="${base_xyz}" rpy="0 0 0"/>
         <geometry>
@@ -39,6 +46,13 @@
     </joint>
 
     <link name="cobot_tower">
+      <visual>
+        <origin xyz="${tower_xyz}" rpy="0 0 0"/>
+        <geometry>
+          <box size="${tower_size}"/>
+        </geometry>
+        <material name="cobot_silver"/>
+      </visual>
       <collision>
         <origin xyz="${tower_xyz}" rpy="0 0 0"/>
         <geometry>
@@ -52,6 +66,13 @@
     </joint>
 
     <link name="touchscreen_mount">
+      <visual>
+        <origin xyz="${touchscreen_mount_xyz}" rpy="0 0 -1.5708"/>
+        <geometry>
+        <mesh filename="package://kortex_description/meshes/touchscreen_mount.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="cobot_silver"/>
+      </visual>
       <collision>
         <origin xyz="${touchscreen_mount_xyz}" rpy="0 0 -1.5708"/>
         <geometry>
@@ -65,6 +86,13 @@
     </joint>
 
     <link name="touchscreen">
+      <visual>
+        <origin xyz="${touchscreen_xyz}" rpy="${touchscreen_rpy}"/>
+        <geometry>
+        <mesh filename="package://kortex_description/meshes/touchscreen.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="cobot_silver"/>
+      </visual>
       <collision>
         <origin xyz="${touchscreen_xyz}" rpy="${touchscreen_rpy}"/>
         <geometry>
@@ -78,6 +106,13 @@
     </joint>
 
     <link name="supporter_460">
+      <visual>
+        <origin xyz="${supporter_460_xyz}" rpy="1.5708 1.5708 0"/>
+        <geometry>
+          <box size="${supporter_460_size}"/>
+        </geometry>
+        <material name="cobot_silver"/>
+      </visual>
       <collision>
         <origin xyz="${supporter_460_xyz}" rpy="1.5708 1.5708 0"/>
         <geometry>
@@ -91,6 +126,13 @@
     </joint>
 
     <link name="supporter_580">
+      <visual>
+        <origin xyz="${supporter_580_xyz}" rpy="0 0 0"/>
+        <geometry>
+          <box size="${supporter_580_size}"/>
+        </geometry>
+        <material name="cobot_silver"/>
+      </visual>
       <collision>
         <origin xyz="${supporter_580_xyz}" rpy="0 0 0"/>
         <geometry>
@@ -104,6 +146,13 @@
     </joint>
 
     <link name="camera_bracket">
+      <visual>
+        <origin xyz="${camera_bracket_xyz}" rpy="0 0 1.5708"/>
+        <geometry>
+        <mesh filename="package://kortex_description/meshes/camera_bracket.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="cobot_silver"/>
+      </visual>
       <collision>
         <origin xyz="${camera_bracket_xyz}" rpy="0 0 1.5708"/>
         <geometry>
@@ -117,6 +166,13 @@
     </joint>
 
     <link name="kinect">
+      <visual>
+        <origin xyz="${kinect_xyz}" rpy="${kinect_rpy}"/>
+        <geometry>
+        <mesh filename="package://kortex_description/meshes/kinect.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="cobot_silver"/>
+      </visual>
       <collision>
         <origin xyz="${kinect_xyz}" rpy="${kinect_rpy}"/>
         <geometry>
@@ -130,11 +186,16 @@
     </joint>
 
     <link name="kinect_ablated">
+      <visual>
+        <origin xyz="${kinect_xyz}" rpy="${kinect_rpy}"/>
+        <geometry>
+          <box size="0.15 0.09 0.24"/>
+        </geometry>
+        <material name="cobot_silver"/>
+      </visual>
       <collision>
         <origin xyz="${kinect_xyz}" rpy="${kinect_rpy}"/>
         <geometry>
-          <!-- <box size="0.11 0.05 0.2"/> -->
-          <!-- alate 4cm -->
           <box size="0.15 0.09 0.24"/>
         </geometry>
       </collision>
@@ -145,6 +206,13 @@
     </joint>
 
     <link name="dummy_left_guard">
+      <visual>
+        <origin xyz="0.001 0.8 0.497" rpy="0 0 1.5708"/>
+        <geometry>
+          <box size="0.4 0.4 0.80"/>
+        </geometry>
+        <material name="cobot_silver"/>
+      </visual>
       <collision>
         <origin xyz="0.001 0.8 0.497" rpy="0 0 1.5708"/>
         <geometry>
