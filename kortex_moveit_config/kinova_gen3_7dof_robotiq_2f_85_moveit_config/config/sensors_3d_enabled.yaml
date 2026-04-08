@@ -6,7 +6,7 @@ kinect_pointcloud:
   point_cloud_topic: /points2
   max_range: 3.0
   point_subsample: 1
-  padding_offset: 0.05
-  padding_scale: 1.2
-  max_update_rate: 1.0
+  padding_offset: 0.12
+  padding_scale: 2.0
+  max_update_rate: 5.0
   filtered_cloud_topic: /filtered_points

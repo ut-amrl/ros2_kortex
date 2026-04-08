@@ -32,6 +32,7 @@ def launch_setup(context, *args, **kwargs):
     # Initialize Arguments
     robot_ip = LaunchConfiguration("robot_ip")
     use_fake_hardware = LaunchConfiguration("use_fake_hardware")
+    use_sensors_3d = LaunchConfiguration("use_sensors_3d")
     gripper_max_velocity = LaunchConfiguration("gripper_max_velocity")
     gripper_max_force = LaunchConfiguration("gripper_max_force")
     launch_rviz = LaunchConfiguration("launch_rviz")
@@ -49,7 +50,7 @@ def launch_setup(context, *args, **kwargs):
         "use_internal_bus_gripper_comm": use_internal_bus_gripper_comm,
     }
 
-    moveit_config = (
+    moveit_config_builder = (
         MoveItConfigsBuilder("gen3", package_name="kinova_gen3_7dof_robotiq_2f_85_moveit_config")
         .robot_description(mappings=launch_arguments)
         .trajectory_execution(file_path="config/moveit_controllers.yaml")
@@ -57,9 +58,13 @@ def launch_setup(context, *args, **kwargs):
             publish_robot_description=False, publish_robot_description_semantic=True
         )
         .planning_pipelines(pipelines=["ompl"])
-        .sensors_3d(file_path="config/sensors_3d.yaml")
-        .to_moveit_configs()
     )
+    sensors_enabled = use_sensors_3d.perform(context) == "true"
+    if sensors_enabled:
+        moveit_config_builder = moveit_config_builder.sensors_3d(
+            file_path="config/sensors_3d_enabled.yaml"
+        )
+    moveit_config = moveit_config_builder.to_moveit_configs()
 
     moveit_config.moveit_cpp.update({"use_sim_time": use_sim_time.perform(context) == "true"})
 
@@ -82,12 +87,20 @@ def launch_setup(context, *args, **kwargs):
     )
     extrinsics_strs = {
         "x": "0.01",
-        "y": "-0.25",
-        "z": "0.57",
+        "y": "-0.3",
+        "z": "0.6",
         "roll": "0.15",
-        "pitch": "0.3",
+        "pitch": "0.26",
         "yaw": "0.35",
     }
+    # extrinsics_strs = {
+    #     "x": "0.01",
+    #     "y": "-0.25",
+    #     "z": "0.57",
+    #     "roll": "0.15",
+    #     "pitch": "0.3",
+    #     "yaw": "0.35",
+    # }
     # extrinsics_strs = {
     #     "x": "0.01",
     #     "y": "-0.2",
@@ -267,6 +280,13 @@ def generate_launch_description():
             "use_fake_hardware",
             default_value="false",
             description="Start robot with fake hardware mirroring command to its states.",
+        )
+    )
+    declared_arguments.append(
+        DeclareLaunchArgument(
+            "use_sensors_3d",
+            default_value="true",
+            description="Enable MoveIt 3D sensors input (point cloud -> octomap).",
         )
     )
     declared_arguments.append(
