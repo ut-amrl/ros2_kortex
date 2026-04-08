@@ -85,13 +85,14 @@ def launch_setup(context, *args, **kwargs):
         output="log",
         arguments=["--frame-id", "world", "--child-frame-id", "base_link"],
     )
+    # # NOTE (Taijing): Don't delete this; tuning in progress.
     extrinsics_strs = {
         "x": "0.01",
         "y": "-0.3",
-        "z": "0.6",
-        "roll": "0.15",
+        "z": "0.51",
+        "roll": "0.1",
         "pitch": "0.26",
-        "yaw": "0.35",
+        "yaw": "0.4",
     }
     # extrinsics_strs = {
     #     "x": "0.01",
