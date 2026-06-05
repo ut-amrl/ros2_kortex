@@ -86,14 +86,15 @@ def launch_setup(context, *args, **kwargs):
         arguments=["--frame-id", "world", "--child-frame-id", "base_link"],
     )
     # # NOTE (Taijing): Don't delete this; tuning in progress.
+    # NOTE (Jeongin): Below is the modified version (06.02.2026)
     extrinsics_strs = {
-        "x": "0.01",
-        "y": "-0.3",
-        "z": "0.51",
-        "roll": "0.1",
-        "pitch": "0.26",
-        "yaw": "0.4",
-    }
+		 "x":     "0.040000",
+ 		 "y":     "-0.430000",
+ 		 "z":     "0.500000",
+ 		 "roll":  "0.050000",
+ 		 "pitch": "0.240000",
+		 "yaw":   "0.450000",
+	}
     # extrinsics_strs = {
     #     "x": "0.01",
     #     "y": "-0.25",
@@ -104,11 +105,27 @@ def launch_setup(context, *args, **kwargs):
     # }
     # extrinsics_strs = {
     #     "x": "0.01",
-    #     "y": "-0.2",
-    #     "z": "0.57",
-    #     "roll": "0.15",
-    #     "pitch": "0.3",
-    #     "yaw": "0.35",
+    #     "y": "-0.41",
+    #     "z": "0.54",
+    #     "roll": "0.09",
+    #     "pitch": "0.20",
+    #     "yaw": "0.49",
+    # }
+    # extrinsics_strs = {
+    #    "x": "0.01",
+    #   "y": "-0.36",
+    #   "z": "0.54",
+    #   "roll": "0.09",
+    #   "pitch": "0.22",
+    #   "yaw": "0.47",
+    # }
+    # extrinsics_strs = {
+    #     "x": "-0.07108836379577824",
+    #     "y": "-0.5158402083503643",
+    #     "z": "0.48315205819800927",
+    #     "roll": "0.08801300170267462",
+    #     "pitch": "0.17336838259843668",
+    #     "yaw": "0.46212679841817267",
     # }
     depth_camera_static_tf = Node(
         package="tf2_ros",

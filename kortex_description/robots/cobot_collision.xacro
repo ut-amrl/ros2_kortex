@@ -209,14 +209,14 @@
       <visual>
         <origin xyz="0.001 0.8 0.497" rpy="0 0 1.5708"/>
         <geometry>
-          <box size="0.4 0.4 0.80"/>
+          <box size="0.5 0.5 0.80"/>
         </geometry>
         <material name="cobot_silver"/>
       </visual>
       <collision>
         <origin xyz="0.001 0.8 0.497" rpy="0 0 1.5708"/>
         <geometry>
-          <box size="0.4 0.4 0.80"/>
+          <box size="0.5 0.5 0.80"/>
         </geometry>
       </collision>
     </link>
