@@ -87,14 +87,24 @@ def launch_setup(context, *args, **kwargs):
     )
     # # NOTE (Taijing): Don't delete this; tuning in progress.
     # NOTE (Jeongin): Below is the modified version (06.02.2026)
+
     extrinsics_strs = {
-		 "x":     "0.040000",
- 		 "y":     "-0.430000",
- 		 "z":     "0.500000",
- 		 "roll":  "0.050000",
- 		 "pitch": "0.240000",
-		 "yaw":   "0.450000",
+		 "x":     "0.010000",
+ 		 "y":     "-0.290000",
+ 		 "z":     "0.540000",
+ 		 "roll":  "0.090000",
+ 		 "pitch": "0.220000",
+		 "yaw":   "0.470000",
 	}
+    
+    # extrinsics_strs = {
+	# 	 "x":     "0.040000",
+ 	# 	 "y":     "-0.430000",
+ 	# 	 "z":     "0.500000",
+ 	# 	 "roll":  "0.050000",
+ 	# 	 "pitch": "0.240000",
+	# 	 "yaw":   "0.450000",
+	# }
     # extrinsics_strs = {
     #     "x": "0.01",
     #     "y": "-0.25",

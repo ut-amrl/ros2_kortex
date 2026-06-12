@@ -22,6 +22,7 @@
       supporter_580_xyz:='-0.0188 -0.387 0.24'
       camera_bracket_xyz:='0.001 -0.387 0.497'
       kinect_xyz:='0.06 -0.387 0.515'
+      kinect_ablated_xyz:='-0.024 -0.462 0.526'
       kinect_rpy:='1.8326 0 1.5708'
       ">
 
@@ -187,14 +188,14 @@
 
     <link name="kinect_ablated">
       <visual>
-        <origin xyz="${kinect_xyz}" rpy="${kinect_rpy}"/>
+        <origin xyz="${kinect_ablated_xyz}" rpy="${kinect_rpy}"/>
         <geometry>
           <box size="0.15 0.09 0.24"/>
         </geometry>
         <material name="cobot_silver"/>
       </visual>
       <collision>
-        <origin xyz="${kinect_xyz}" rpy="${kinect_rpy}"/>
+        <origin xyz="${kinect_ablated_xyz}" rpy="${kinect_rpy}"/>
         <geometry>
           <box size="0.15 0.09 0.24"/>
         </geometry>
