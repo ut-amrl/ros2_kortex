@@ -21,7 +21,7 @@
       supporter_580_size:='0.025 0.025 0.58'
       supporter_580_xyz:='-0.0188 -0.387 0.24'
       camera_bracket_xyz:='0.001 -0.387 0.497'
-      kinect_xyz:='0.06 -0.387 0.515'
+      kinect_xyz:='-0.024 -0.462 0.526'
       kinect_ablated_xyz:='-0.024 -0.462 0.526'
       kinect_rpy:='1.8326 0 1.5708'
       ">
